@@ -13,7 +13,7 @@
         android:text="Register New Account"
         android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/enteremail"
+        app:layout_constraintBottom_toTopOf="@id/userregis"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +27,7 @@
         android:layout_marginEnd="30dp"
         android:hint="E-mail"
         android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toTopOf="@id/enterusername"/>
+        app:layout_constraintBottom_toTopOf="@id/enteraddress"/>
 
     <TextView
         android:id="@+id/emailregis"
@@ -35,8 +35,8 @@
         android:layout_height="wrap_content"
         android:text="E-mail"
         android:layout_marginBottom="55dp"
-        android:layout_marginEnd="25dp"
-        app:layout_constraintBottom_toTopOf="@id/userregis"
+        android:layout_marginEnd="35dp"
+        app:layout_constraintBottom_toTopOf="@id/addresssregis"
         app:layout_constraintEnd_toStartOf="@+id/enteremail"/>
 
 
@@ -92,7 +92,7 @@
         android:hint="Confirm Password"
         android:inputType="textPassword"
         android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toTopOf="@id/enteraddress"/>
+        app:layout_constraintBottom_toTopOf="@id/enteremail"/>
 
     <TextView
         android:id="@+id/confpassregis"
@@ -101,7 +101,7 @@
         android:text=" Confirm\nPassword"
         android:layout_marginBottom="50dp"
         android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toTopOf="@id/addresssregis"
+        app:layout_constraintBottom_toTopOf="@id/emailregis"
         app:layout_constraintEnd_toStartOf="@+id/confpassword"/>
 
 
