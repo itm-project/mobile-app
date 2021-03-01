@@ -1,8 +1,11 @@
 package com.example.drawer
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -19,8 +22,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var setFrag : SettingFragment
     lateinit var logoutFrag : LogoutFragment
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
         val actionBar = supportActionBar
-        actionBar!!.title = "Navigation Drawer"
+        actionBar!!.title = "CASDCO19"
 
         val drawerToggle : ActionBarDrawerToggle = object : ActionBarDrawerToggle(
             this,
@@ -120,4 +121,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             super.onBackPressed()
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.noti_menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId)
+        {
+            R.id.noti -> {
+                Toast.makeText(this,"NOTI",Toast.LENGTH_SHORT).show()
+                val intent = Intent(this,notifications::class.java)
+                startActivity (intent)
+                return true
+            }
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
+        }
+
+
+    }
+
 }
