@@ -26,7 +26,7 @@ class Register : AppCompatActivity() {
         val ad : EditText = findViewById(R.id.enteraddress)
 
         cbRegis.setOnCheckedChangeListener { buttonView, isChecked ->
-            
+
             if(mail.text.trim().isEmpty() || user.text.trim().isEmpty() || pw.text.trim().isEmpty() || cfpw.text.trim().isEmpty() || ad.text.trim().isEmpty())
             {
                 btnRegis.setOnClickListener{
@@ -43,6 +43,9 @@ class Register : AppCompatActivity() {
             {
                 btnRegis.setOnClickListener{
                     Toast.makeText(this,"Regis!",Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity (intent)
+                    
                 }
             }
 

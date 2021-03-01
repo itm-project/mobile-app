@@ -17,10 +17,13 @@ class MainActivity : AppCompatActivity() {
         val edu : EditText = findViewById(R.id.editusername)
         val edp : EditText = findViewById(R.id.editpassword)
 
+
         btlogin.setOnClickListener {
             if(edu.text.trim().isNotEmpty() && edp.text.trim().isNotEmpty() )
             {
                 Toast.makeText(this,"Input Provided",Toast.LENGTH_SHORT).show()
+                val intent = Intent(this,Home::class.java)
+                startActivity (intent)
             }
             else
             {
