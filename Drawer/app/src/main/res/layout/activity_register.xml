@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme.NoActionBar"
+    tools:context=".register">
+
+
+    <TextView
+        android:id="@+id/regis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-Register New Account-"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/userregis"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        ></TextView>
+
+    <EditText
+        android:id="@+id/enterusername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="30dp"
+        android:hint="Username"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@id/enterpassword"/>
+
+    <TextView
+        android:id="@+id/userregis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textColor="@color/black"
+        android:layout_marginBottom="52dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toTopOf="@id/passregis"
+        app:layout_constraintEnd_toStartOf="@+id/enterusername"/>
+
+
+    <EditText
+        android:id="@+id/enterpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="30dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@id/confpassword"/>
+
+    <TextView
+        android:id="@+id/passregis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textColor="@color/black"
+        android:layout_marginBottom="47dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toTopOf="@id/confpassregis"
+        app:layout_constraintEnd_toStartOf="@+id/enterpassword"/>
+
+
+    <EditText
+        android:id="@+id/confpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="30dp"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@id/enteremail"/>
+
+    <TextView
+        android:id="@+id/confpassregis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Confirm\nPassword"
+        android:textColor="@color/black"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toTopOf="@id/emailregis"
+        app:layout_constraintEnd_toStartOf="@+id/confpassword"/>
+
+    <EditText
+        android:id="@+id/enteremail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="30dp"
+        android:hint="E-mail"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@id/enteraddress"/>
+
+    <TextView
+        android:id="@+id/emailregis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E-mail"
+        android:textColor="@color/black"
+        android:layout_marginBottom="55dp"
+        android:layout_marginEnd="35dp"
+        app:layout_constraintBottom_toTopOf="@id/addresssregis"
+        app:layout_constraintEnd_toStartOf="@+id/enteremail"/>
+
+
+    <EditText
+        android:id="@+id/enteraddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="95dp"
+        android:hint="Address"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintBottom_toTopOf="@id/btnRegis" />
+
+    <TextView
+        android:id="@+id/addresssregis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="280dp"
+        android:layout_marginEnd="25dp"
+        android:text="Address"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/enteraddress" />
+
+    <CheckBox
+        android:id="@+id/cbTerms"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="I accept the terms of use"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addresssregis" />
+
+    <Button
+        android:id="@+id/btnRegis"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Register Now"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@id/toLog"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/toLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="177dp"
+        android:layout_marginEnd="177dp"
+        android:layout_marginBottom="88dp"
+        android:text="I'm already a member"
+        android:textColor="@color/purple_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

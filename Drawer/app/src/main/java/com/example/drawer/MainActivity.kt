@@ -3,15 +3,21 @@ package com.example.drawer
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.view.*
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_news.*
+import kotlinx.android.synthetic.main.fragment_profile.*
+import me.relex.circleindicator.CircleIndicator3
+import java.lang.NullPointerException
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -22,9 +28,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var setFrag : SettingFragment
     lateinit var logoutFrag : LogoutFragment
 
+    /*private var titleList = mutableListOf<String>()
+    private var descList = mutableListOf<String>()
+    private var imagesList = mutableListOf<Int>()*/
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        /*postToList()
+
+        try {
+
+            view_pager2.adapter =  VIewPagerAdapter(titleList,descList,imagesList)
+            view_pager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+            val indicator = findViewById<CircleIndicator3>(R.id.indicator)
+            indicator.setViewPager(view_pager2)
+
+        }catch (ignore : NullPointerException) {
+
+        }*/
+
 
         val toolbar : Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -55,7 +81,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
 
+
+
+
     }
+
+    /*private fun addToList(title : String, description : String , image : Int) {
+        titleList.add(title)
+        descList.add(description)
+        imagesList.add(image)
+    }
+
+    private fun postToList() {
+        for(i in 1..5)
+        {
+            addToList(title = "Title $i",description = "Description $i", R.mipmap.ic_launcher_round)
+        }
+    }
+
+    fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }*/
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
@@ -98,6 +148,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.logout -> {
+
                 logoutFrag = LogoutFragment()
                 supportFragmentManager
                     .beginTransaction()

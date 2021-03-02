@@ -6,6 +6,7 @@
     tools:context=".LogoutFragment">
 
     <TextView
+        android:id="@+id/tvLoFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Logout Fragment"
@@ -13,5 +14,14 @@
         android:gravity="center"
         android:layout_centerInParent="true"
         ></TextView>
+
+    <Button
+        android:id="@+id/btnLoFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tvLoFrag"
+        android:layout_marginTop="200dp"/>
 
 </RelativeLayout>

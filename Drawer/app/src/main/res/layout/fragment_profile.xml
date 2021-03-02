@@ -12,6 +12,9 @@
         android:textSize="30dp"
         android:gravity="center"
         android:layout_centerInParent="true"
+        android:id="@+id/tvProfileFrag"
         ></TextView>
+
+
 
 </RelativeLayout>
