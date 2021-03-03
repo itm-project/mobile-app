@@ -1,13 +1,16 @@
 package com.example.drawer
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.fragment_home.*
+import me.relex.circleindicator.CircleIndicator3
 import java.lang.NullPointerException
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,30 +41,21 @@ class HomeFragment : Fragment() {
 
         postToList()
 
-        try {
-            view_pager2.adapter =  VIewPagerAdapter(titleList,descList,imagesList)
-            view_pager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-
-            //val indicator = findViewById<circleIndicator3>(R.id.indicator)
-            indicator.setViewPager(view_pager2)
-        }catch (ignore : NullPointerException){
-
-        }
-
-
-
     }
 
-    private fun addToList(title : String, description : String , image : Int) {
+    private fun addToList(title: String, description: String, image: Int) {
         titleList.add(title)
         descList.add(description)
         imagesList.add(image)
     }
 
     private fun postToList() {
-        for(i in 1..5)
-        {
-            addToList(title = "Title $i",description = "Description $i", R.mipmap.ic_launcher_round)
+        for (i in 1..5) {
+            addToList(
+                title = "Title $i",
+                description = "Description $i",
+                R.mipmap.ic_launcher_round
+            )
         }
     }
 
@@ -69,8 +63,20 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val v: View = inflater!!.inflate(R.layout.fragment_home, container, false)
+        val view_pager2 : ViewPager2 = v.findViewById(R.id.view_pager2)
+        view_pager2.adapter = VIewPagerAdapter(titleList, descList, imagesList)
+        view_pager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+        val indicator = v.findViewById<CircleIndicator3>(R.id.indicator)
+        indicator.setViewPager(view_pager2)
+
+        val btnWarning : Button = v.findViewById(R.id.btnWarning)
+        btnWarning.setOnClickListener {
+            startActivity(Intent(activity,news::class.java))
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return v
     }
 
     companion object {

@@ -6,6 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".news">
 
+    <Button
+        android:id="@+id/btnBackHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="270dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="105dp"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/warningyellow"
+        android:layout_below="@+id/imageView"/>
+
     <me.relex.circleindicator.CircleIndicator3
         android:id="@+id/indicator"
         android:layout_width="match_parent"
@@ -15,9 +42,10 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="380dp"
         android:id="@+id/view_pager2"
         android:layout_centerInParent="true"
-        android:layout_above="@+id/indicator" />
+        android:layout_above="@+id/indicator" >
 
+    </androidx.viewpager2.widget.ViewPager2>
 </RelativeLayout>

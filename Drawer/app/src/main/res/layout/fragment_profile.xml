@@ -5,16 +5,73 @@
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/picpro"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Profile Fragment"
-        android:textSize="30dp"
+        android:text="Username : Alnwza07"
+        android:textSize="20dp"
         android:gravity="center"
-        android:layout_centerInParent="true"
-        android:id="@+id/tvProfileFrag"
+        android:layout_below="@+id/picpro"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tv0"
         ></TextView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name : Mr.AAA  AAAAA"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_below="@+id/tv0"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tv1"
+        ></TextView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phone : 0XX-XXX-XXXX"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:id="@+id/tv2"
+        android:layout_below="@+id/tv1"
+        android:layout_marginTop="30dp"
+        ></TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="email : XXX@XXXX.XXX"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:id="@+id/tv3"
+        android:layout_below="@+id/tv2"
+        android:layout_marginTop="30dp"
+        ></TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Address : xxx xxxxx xxxxxxxxxxxxxx\nxxxxxxxxxxxxx"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:id="@+id/tv4"
+        android:layout_below="@+id/tv3"
+        android:layout_marginTop="30dp"
+        ></TextView>
 
 </RelativeLayout>

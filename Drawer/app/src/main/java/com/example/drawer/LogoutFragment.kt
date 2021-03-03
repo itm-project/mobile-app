@@ -42,7 +42,7 @@ class LogoutFragment : Fragment() {
         val b1:Button = v.findViewById(R.id.btnLoFrag)
         b1.setOnClickListener(View.OnClickListener() {
             startActivity(Intent(activity,login::class.java))
-            Toast.makeText(getActivity(),"TTEST CLICKED",Toast.LENGTH_SHORT).show()
+            Toast.makeText(getActivity(),"LOG OUT",Toast.LENGTH_SHORT).show()
         })
 
         // Inflate the layout for this fragment

@@ -1,11 +1,14 @@
 package com.example.drawer
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class VIewPagerAdapter (private val title : List<String>,private val detail : List<String>,private val images : List<Int>) : RecyclerView.Adapter<VIewPagerAdapter.Pager2ViewHolder>(){
@@ -20,6 +23,7 @@ class VIewPagerAdapter (private val title : List<String>,private val detail : Li
             itemImage.setOnClickListener { v:View ->
                 val pos = adapterPosition
                 Toast.makeText(itemView.context,"item #${pos+1} clicked",Toast.LENGTH_SHORT).show()
+
             }
         }
 

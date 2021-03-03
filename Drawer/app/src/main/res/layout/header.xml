@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Textview01"
+        android:text="Name"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
         ></TextView>
@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Textview02"
+        android:text="Surname"
         ></TextView>
 
 </LinearLayout>

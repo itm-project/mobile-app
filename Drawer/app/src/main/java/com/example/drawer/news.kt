@@ -1,10 +1,12 @@
 package com.example.drawer
 
+import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Button
+import android.widget.ImageView
 import androidx.viewpager2.widget.ViewPager2
 import me.relex.circleindicator.CircleIndicator
 import me.relex.circleindicator.CircleIndicator3
@@ -18,6 +20,30 @@ class news : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
+
+        /*val imageView : ImageView = findViewById(R.id.imageView)
+        imageView.setOnClickListener {
+            val  intent = Intent(this,MainActivity::class.java)
+            startActivity (intent)
+        }*/
+
+        val imageView : ImageView = findViewById(R.id.imageView)
+        imageView.setImageResource(R.drawable.warningstamp)
+        val imageView2 : ImageView = findViewById(R.id.imageView2)
+        imageView2.setImageResource(R.drawable.warningstamp)
+        imageView.setOnClickListener {
+            imageView.setBackgroundColor(Color.YELLOW)
+            imageView2.setBackgroundColor(Color.TRANSPARENT)
+        }
+        imageView2.setOnClickListener {
+            imageView.setBackgroundColor(Color.TRANSPARENT)
+            imageView2.setBackgroundColor(Color.YELLOW)
+        }
+
+        val btnBH : Button = findViewById(R.id.btnBackHome)
+        btnBH.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
+        }
 
         postToList()
 
@@ -48,6 +74,29 @@ class news : AppCompatActivity() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.noti_menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId)
+        {
+            R.id.noti -> {
+                //Toast.makeText(this,"NOTI",Toast.LENGTH_SHORT).show()
+                val intent = Intent(this,notifications::class.java)
+                startActivity (intent)
+                return true
+            }
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
+        }
+
+
     }
 
 
