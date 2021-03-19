@@ -2,6 +2,7 @@ package com.example.drawer
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.fragment_home.*
 import me.relex.circleindicator.CircleIndicator3
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.lang.NullPointerException
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,6 +36,8 @@ class HomeFragment : Fragment() {
     private var descList = mutableListOf<String>()
     private var imagesList = mutableListOf<Int>()
 
+    lateinit private var api: API
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -39,7 +45,9 @@ class HomeFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
-        postToList()
+        //postToList()
+        api = API.retrofitBuild()
+        postNews()
 
     }
 
@@ -49,7 +57,7 @@ class HomeFragment : Fragment() {
         imagesList.add(image)
     }
 
-    private fun postToList() {
+    /*private fun postToList() {
         for (i in 1..5) {
             addToList(
                 title = "Title $i",
@@ -57,7 +65,39 @@ class HomeFragment : Fragment() {
                 R.mipmap.ic_launcher_round
             )
         }
+    }*/
+
+//: Call<List<newsData>>
+    private fun postNews() {
+        val call= api.getNews()
+        call.enqueue(object : Callback<List<newsData>> {
+            override fun onResponse(
+                call: Call<List<newsData>>,
+                response: Response<List<newsData>>
+            ) {
+                if (response.isSuccessful) {
+                    val list = response.body()
+                    Log.i("API", "--------------- isSuccessful x News ----------------")
+
+                    for (i in 0 until list!!.size) {
+                        addToList(
+                            title = "Title : ${list[i].name}",
+                            description = "Description : ${list[i].detail}",
+                            R.mipmap.ic_launcher_round
+                        )
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<newsData>>, t: Throwable) {
+                Log.e("API", t.message + " -*-*-*-*-*-*-*-*-*-*-*-* x News")
+            }
+
+        })
     }
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,6 +107,8 @@ class HomeFragment : Fragment() {
         val view_pager2 : ViewPager2 = v.findViewById(R.id.view_pager2)
         view_pager2.adapter = VIewPagerAdapter(titleList, descList, imagesList)
         view_pager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+
 
         val indicator = v.findViewById<CircleIndicator3>(R.id.indicator)
         indicator.setViewPager(view_pager2)

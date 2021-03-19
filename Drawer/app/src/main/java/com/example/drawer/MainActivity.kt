@@ -3,6 +3,7 @@ package com.example.drawer
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.Toast
@@ -14,9 +15,14 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_news.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import me.relex.circleindicator.CircleIndicator3
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.lang.NullPointerException
 
 
@@ -27,6 +33,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var hisFrag : HistoryFragment
     lateinit var setFrag : SettingFragment
     lateinit var logoutFrag : LogoutFragment
+
+    lateinit private var api: API
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +68,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .replace(R.id.frame_layout,homeFrag)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
+
+
+        api = API.retrofitBuild()
+        //getNews()
+
 
     }
 
@@ -154,6 +167,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
+    }
+
+
+    private fun getNews(){
+        val call = api.getNews()
+        call.enqueue(object: Callback<List<newsData>> {
+            override fun onResponse(
+                call: Call<List<newsData>>,
+                response: Response<List<newsData>>
+            ) {
+                if(response.isSuccessful)
+                {
+                    val list = response.body()
+                    Log.i("API","--------------- isSuccessful x News ----------------")
+
+                    for(i in 0 until list!!.size)
+                    {
+                        val msg = "\n news_id: ${list[i].news_id} \n name: ${list[i].name} \n detail: ${list[i].detail} \n date: ${list[i].date} \n notification_id: ${list[i].notification_id} \n"
+                        textView.append(msg)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<newsData>>, t: Throwable) {
+                Log.e("API",t.message+" -*-*-*-*-*-*-*-*-*-*-*-* x News")
+            }
+
+        })
     }
 
 }

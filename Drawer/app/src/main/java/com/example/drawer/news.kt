@@ -4,12 +4,16 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.ImageView
 import androidx.viewpager2.widget.ViewPager2
 import me.relex.circleindicator.CircleIndicator
 import me.relex.circleindicator.CircleIndicator3
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class news : AppCompatActivity() {
 
@@ -20,6 +24,26 @@ class news : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
+
+        /*val API = API.retrofitBuild()
+        val call = API.getNews()
+        call.enqueue(object: Callback<List<newsData>>{
+            override fun onResponse(
+                call: Call<List<newsData>>,
+                response: Response<List<newsData>>
+            ) {
+                if(response.isSuccessful)
+                {
+                    val list = response.body()
+                    Log.i("API","-------------------------------")
+                }
+            }
+
+            override fun onFailure(call: Call<List<newsData>>, t: Throwable) {
+                Log.e("API",t.message)
+            }
+
+        })*/
 
         /*val imageView : ImageView = findViewById(R.id.imageView)
         imageView.setOnClickListener {

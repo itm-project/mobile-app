@@ -9,7 +9,6 @@
     tools:context=".MainActivity">
 
 
-
     <include
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -26,7 +25,6 @@
         app:headerLayout="@layout/header"
         android:layout_gravity="start"
         ></com.google.android.material.navigation.NavigationView>
-
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
