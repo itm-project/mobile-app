@@ -14,26 +14,30 @@ class register : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val list1 : MutableList<String> = ArrayList()
-        list1.add("1")
-        list1.add("11")
-        list1.add("111")
-        val adapter1 : ArrayAdapter<String> = ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,list1)
+        val list1: MutableList<String> = ArrayList()
+        list1.add("Tambon1")
+        list1.add("Tambon2")
+        list1.add("Tambon3")
+        val adapter1: ArrayAdapter<String> =
+            ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, list1)
         spinner1.adapter = adapter1
 
-        val list2 : MutableList<String> = ArrayList()
-        list2.add("2")
-        list2.add("22")
-        list2.add("222")
-        val adapter2 : ArrayAdapter<String> = ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,list2)
+        val list2: MutableList<String> = ArrayList()
+        list2.add("Amphoe1")
+        list2.add("Amphoe2")
+        list2.add("Amphoe3")
+        val adapter2: ArrayAdapter<String> =
+            ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, list2)
         spinner2.adapter = adapter2
 
-        val list3 : MutableList<String> = ArrayList()
-        list3.add("3")
-        list3.add("33")
-        list3.add("333")
-        val adapter3 : ArrayAdapter<String> = ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,list3)
+        val list3: MutableList<String> = ArrayList()
+        list3.add("Changwat1")
+        list3.add("Changwat2")
+        list3.add("Changwat3")
+        val adapter3: ArrayAdapter<String> =
+            ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, list3)
         spinner3.adapter = adapter3
+
 
         /*val op1 : Spinner = findViewById(R.id.spinner1)
         val spn1 : TextView = findViewById(R.id.spn1)
@@ -107,13 +111,13 @@ class register : AppCompatActivity() {
         val pw: EditText = findViewById(R.id.enterpassword)
         val cfpw: EditText = findViewById(R.id.confpassword)
         val ad: EditText = findViewById(R.id.adnum)
-        val ad1 : EditText = findViewById(R.id.ad1)
-        val ad2 : EditText = findViewById(R.id.ad2)
-        val ad3 : EditText = findViewById(R.id.ad3)
-        val ad4 : EditText = findViewById(R.id.ad4)
-        val spn1 : Spinner = findViewById(R.id.spinner1)
-        val spn2 : Spinner = findViewById(R.id.spinner2)
-        val spn3 : Spinner = findViewById(R.id.spinner3)
+        val ad1: EditText = findViewById(R.id.ad1)
+        val ad2: EditText = findViewById(R.id.ad2)
+        val ad3: EditText = findViewById(R.id.ad3)
+        val ad4: EditText = findViewById(R.id.ad4)
+        val spn1: Spinner = findViewById(R.id.spinner1)
+        val spn2: Spinner = findViewById(R.id.spinner2)
+        val spn3: Spinner = findViewById(R.id.spinner3)
 
 
         btnRegis.setOnClickListener {
@@ -121,14 +125,15 @@ class register : AppCompatActivity() {
 
             if (mail.text.trim().isEmpty() || user.text.trim().isEmpty() || pw.text.trim()
                     .isEmpty() || cfpw.text.trim().isEmpty() || ad.text.trim().isEmpty()
-                || ad1.text.trim().isEmpty() || ad2.text.trim().isEmpty()|| ad3.text.trim().isEmpty()|| ad4.text.trim().isEmpty()
+                || ad1.text.trim().isEmpty() || ad2.text.trim().isEmpty() || ad3.text.trim()
+                    .isEmpty() || ad4.text.trim().isEmpty()
             ) {
                 Toast.makeText(this, "Input Required", Toast.LENGTH_SHORT).show()
             }
             if (mail.text.trim().isNotEmpty() && user.text.trim().isNotEmpty() && pw.text.trim()
                     .isNotEmpty() && cfpw.text.trim().isNotEmpty() && ad.text.trim()
                     .isNotEmpty() && ad1.text.trim().isNotEmpty() && ad2.text.trim()
-                    .isNotEmpty() && ad3.text.trim().isNotEmpty()&& ad4.text.trim()
+                    .isNotEmpty() && ad3.text.trim().isNotEmpty() && ad4.text.trim()
                     .isNotEmpty()
             ) {
                 Toast.makeText(this, "Need to Accept Terms", Toast.LENGTH_SHORT)

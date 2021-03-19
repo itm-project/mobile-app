@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:orientation="vertical"
-    android:background="@color/teal_200"
+    android:background="@color/purple_200"
     android:padding="16dp">
 
     <ImageView
@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
+        android:text="Alnwza07"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
         ></TextView>
@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Surname"
+        android:text="Mr. AAA AAAAA"
         ></TextView>
 
 </LinearLayout>

@@ -1,84 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SettingFragment">
 
+
     <ImageView
+        android:id="@+id/picpro"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@mipmap/ic_launcher_round"
-        android:layout_marginTop="80dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/picpro"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
+        android:id="@+id/tv0"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/picpro"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:gravity="left"
         android:text="Username : Alnwza07"
         android:textSize="20dp"
-        android:gravity="left"
-        android:layout_marginStart="50dp"
-        android:layout_below="@+id/picpro"
-        android:layout_marginTop="30dp"
-        android:id="@+id/tv0"
-        ></TextView>
+        app:layout_constraintBottom_toTopOf="@+id/tv1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/picpro"></TextView>
 
     <TextView
+        android:id="@+id/tv1"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tv0"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="35dp"
+        android:gravity="left"
         android:text="Name : Mr.AAA  AAAAA"
         android:textSize="20dp"
-        android:gravity="left"
-        android:layout_below="@+id/tv0"
-        android:layout_marginTop="30dp"
-        android:id="@+id/tv1"
-        android:layout_marginStart="50dp"
-        ></TextView>
+        app:layout_constraintBottom_toTopOf="@+id/tv2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv0"></TextView>
 
     <TextView
+        android:id="@+id/tv2"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="35dp"
+        android:gravity="left"
         android:text="Phone : 0XX-XXX-XXXX"
         android:textSize="20dp"
-        android:gravity="left"
-        android:id="@+id/tv2"
-        android:layout_below="@+id/tv1"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="50dp"
-        ></TextView>
+        app:layout_constraintBottom_toTopOf="@+id/tv3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv1"></TextView>
 
     <TextView
+        android:id="@+id/tv3"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="35dp"
+        android:gravity="left"
         android:text="email : XXX@XXXX.XXX"
         android:textSize="20dp"
-        android:gravity="left"
-        android:id="@+id/tv3"
-        android:layout_below="@+id/tv2"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="50dp"
-        ></TextView>
+        app:layout_constraintBottom_toTopOf="@+id/tv4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv2"></TextView>
 
     <TextView
+        android:id="@+id/tv4"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tv3"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="35dp"
+        android:gravity="left"
         android:text="Address : xxxxxxxxxxxxx\n                  xxxxxxxxxxxxx"
         android:textSize="20dp"
-        android:gravity="left"
-        android:id="@+id/tv4"
-        android:layout_below="@+id/tv3"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="50dp"
-        ></TextView>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="150dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv3"></TextView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnStUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="right"
-        android:text="Button" />
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="15dp"
+        android:text="Edit"
+        app:layout_constraintBottom_toTopOf="@+id/btnStName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toEndOf="@+id/tv0"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnStName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="15dp"
+        android:text="Edit"
+        app:layout_constraintBottom_toTopOf="@+id/btnStTel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toEndOf="@+id/tv1"
+        app:layout_constraintTop_toBottomOf="@+id/btnStUsername" />
+
+    <Button
+        android:id="@+id/btnStTel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="15dp"
+        android:text="Edit"
+        app:layout_constraintBottom_toTopOf="@+id/btnStMail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toEndOf="@+id/tv2"
+        app:layout_constraintTop_toBottomOf="@+id/btnStName" />
+
+    <Button
+        android:id="@+id/btnStMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="15dp"
+        android:text="Edit"
+        app:layout_constraintBottom_toTopOf="@+id/btnStAd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toEndOf="@+id/tv3"
+        app:layout_constraintTop_toBottomOf="@+id/btnStTel" />
+
+    <Button
+        android:id="@+id/btnStAd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="140dp"
+        android:text="Edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toEndOf="@+id/tv4"
+        app:layout_constraintTop_toBottomOf="@+id/btnStMail" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
