@@ -27,7 +27,11 @@ interface API {
 
     @Headers("Content-Type: application/json")
     @POST("user/profile")
-    fun getProfile(@Body profileRequestData: profileRequestData) : Call<List<userData>> // body data
+    fun getProfile(@Body profileRequestData: profileRequestData) : Call<List<userData>>
+
+    @Headers("Content-Type: application/json")
+    @POST("address")
+    fun getAddress(@Body addressRequestData: addressRequestData) : Call<List<addressData>>
 
     /*@GET("login")
     fun getUserProfile(): Call<LoginPostData>*/

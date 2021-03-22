@@ -47,6 +47,7 @@ class ProfileFragment : Fragment() {
         }
         //session = sessionUser(requireActivity())
         getProfile()
+        getAddress()
 
     }
 
@@ -70,8 +71,9 @@ class ProfileFragment : Fragment() {
                             val list = response.body()
                             for(i in 0 until list!!.size)
                             {
-                                val msg = "\n username: ${list[i].username} \n name: ${list[i].name} \n lastname: ${list[i].lastname} \n phone: ${list[i].phone} \n address: ${list[i].address}"
+                                val msg = "\n username: ${list[i].username} \n name: ${list[i].name} \n lastname: ${list[i].lastname} \n phone: ${list[i].phone} "
                                 textviewPro.append(msg)
+                                //getAddress(list[i].address)
                             }
                             //val msg = "A: "+ (list?.get(0)?.username ?: String)
 
@@ -84,77 +86,48 @@ class ProfileFragment : Fragment() {
                     }
 
                 })
-                /*api = API.retrofitBuild()
-                val call = api.getNews()
-                call.enqueue(object : Callback<List<newsData>> {
-                    override fun onResponse(
-                        call: Call<List<newsData>>,
-                        response: Response<List<newsData>>
-                    ) {
-                        if (response.isSuccessful) {
-
-                            Log.e("GGGGGGGGGGG","GOD PLEASE")
-                            Log.i("API", "--------------- isSuccessful x News at profileFrag ----------------")
-                            Log.e("USERNAMEUSERNAME","username:"+username)
-
-                        }
-                    }
-                    override fun onFailure(call: Call<List<newsData>>, t: Throwable) {
-                        Log.e("API", t.message + " -*-*-*-*-*-*-*-*-*-*-*-* x News at profileFrag ")
-                    }
-
-                })*/
 
                 Log.e("END-END-END-END-END","ID:"+idid)
             }
         }
 
     }
-    /*api = API.retrofitBuild()
-    val call = api.getProfile(profileRequestData(username))
-    call.enqueue(object : Callback<userData>{
-        override fun onResponse(call: Call<userData>, response: Response<userData>) {
-            if(response.isSuccessful)
-            {
-                val list = response.body()
-                val msg = "\n username: ${list!!.username} \n name: ${list!!.name} \n lastname: ${list!!.lastname} \n phone: ${list!!.phone} \n address: ${list!!.address}"
-                textviewPro.append(msg)
-                Log.e("API", "--------------- isSuccessful x Profile ----------------")
-            }
-        }
-        override fun onFailure(call: Call<userData>, t: Throwable) {
-            Log.e("API", t.message + " -*-*-*-*-*-*-*-*-*-*-*-* x Profile ")
-        }
 
-    })*/
+    fun getAddress(){
+        val addressId:Int = 9
+        api = API.retrofitBuild()
+        val call = api.getAddress(addressRequestData(addressId))
+        call.enqueue(object : Callback<List<addressData>>{
+            override fun onResponse(
+                call: Call<List<addressData>>,
+                response: Response<List<addressData>>
+            ) {
+                if(response.isSuccessful)
+                {
+                    val list = response.body()
+                    for(i in 0 until list!!.size)
+                    {
+                        val msg = "\n Number: ${list[i].number} \n Moo: ${list[i].moo} \n Road: ${list[i].road}  " +
+                                  "\n Tambon: ${list[i].TambonThai} \n District: ${list[i].DistrictThai} \n Province: ${list[i].ProvinceThai} " +
+                                  "\n Postcode: ${list[i].postcode}"
+                        textviewPro.append(msg)
+                    }
+                    Log.e("ADDRESS ADD!","ADDDDDDDDRESSSSSSSSSSSSSS")
+                }
+            }
+            override fun onFailure(call: Call<List<addressData>>, t: Throwable) {
+                Log.e("ADDRESS FAIL!",t.message+" ----------- ADDRESS FAIL")
+            }
+
+        })
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val v: View = inflater!!.inflate(R.layout.fragment_profile, container, false)
-        //val v: View = inflater!!.inflate(R.layout.activity_login, container, false)
-        /*val edu : EditText = v.findViewById(R.id.editusername)
-        val edp : EditText = v.findViewById(R.id.editpassword)
-        val username = edu.text.toString()
-        val password = edp.text.toString()
-        Log.e("TESTPROFRAG", "aa: "+username+" bb: "+password)*/
-        /*communicator = activity as Communicator
-        communicator.passDataCom(v.t)*/
-        /*session = sessionUser(requireActivity())
-        var user:HashMap<String,String> = session.getUserDetail()
-        Log.e("TESTSESSIONINPROFRAG","PROFRAG: "+user)
-        for ((k, v) in user) {
-            println("$k = $v")
-            Log.e("TESTCALLSESSION","$k = $v")
-            if(k == "name")
-            {
-                Log.e("NAME","$k = $v")
-            }
-            if(k == "lastname")
-            {
-                Log.e("LASTNAME","$k = $v")
-            }
-        }*/
+
         return v
     }
 
