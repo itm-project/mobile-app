@@ -6,7 +6,7 @@
     tools:context=".HomeFragment">
 
 
-    <TextView
+     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         android:layout_alignParentBottom="true"
         android:gravity="center" />
 
-    <Button
+   <!-- <Button
         android:id="@+id/btnWarning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,16 +26,22 @@
         android:layout_marginTop="450dp"
         android:layout_marginEnd="53dp"
         android:layout_marginBottom="105dp"
-        android:text="WARNING" />
+        android:text="WARNING" /> -->
+
+    <!--<me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black" >
+    </me.relex.circleindicator.CircleIndicator3> -->
 
     <me.relex.circleindicator.CircleIndicator3
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/black" >
-
-    </me.relex.circleindicator.CircleIndicator3>
+        android:background="@color/black" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"

@@ -17,16 +17,15 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Username : Alnwza07"
-        android:textSize="20dp"
+        android:textSize="30dp"
         android:gravity="center"
         android:layout_below="@+id/picpro"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
-        android:id="@+id/tv0"
+        android:id="@+id/textviewPro"
         ></TextView>
 
-    <TextView
+    <!-- <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Name : Mr.AAA  AAAAA"
@@ -72,6 +71,6 @@
         android:id="@+id/tv4"
         android:layout_below="@+id/tv3"
         android:layout_marginTop="30dp"
-        ></TextView>
+        ></TextView> -->
 
 </RelativeLayout>

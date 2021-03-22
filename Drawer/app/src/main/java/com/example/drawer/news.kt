@@ -21,6 +21,8 @@ class news : AppCompatActivity() {
     private var descList = mutableListOf<String>()
     private var imagesList = mutableListOf<Int>()
 
+    lateinit private var api: API
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
@@ -69,7 +71,7 @@ class news : AppCompatActivity() {
             startActivity(Intent(this,MainActivity::class.java))
         }
 
-        postToList()
+        //postToList()
 
         val view_pager2 : ViewPager2 = findViewById(R.id.view_pager2)
         view_pager2.adapter =  VIewPagerAdapter(titleList,descList,imagesList)
@@ -77,6 +79,9 @@ class news : AppCompatActivity() {
 
         val indicator = findViewById<CircleIndicator3>(R.id.indicator)
         indicator.setViewPager(view_pager2)
+
+        api = API.retrofitBuild()
+        postNews()
 
     }
     private fun addToList(title : String, description : String , image : Int) {
@@ -91,6 +96,42 @@ class news : AppCompatActivity() {
             addToList(title = "Title $i",description = "Description $i", R.mipmap.ic_launcher_round)
         }
     }
+
+
+    private fun postNews() {
+        val call= api.getNews()
+        call.enqueue(object : Callback<List<newsData>> {
+            override fun onResponse(
+                call: Call<List<newsData>>,
+                response: Response<List<newsData>>
+            ) {
+                if (response.isSuccessful) {
+                    val list = response.body()
+                    Log.i("API", "--------------- isSuccessful x News at news ----------------")
+
+                    for (i in 0 until list!!.size) {
+                        addToList(
+                            title = "Title : ${list[i].name}",
+                            description = "Description : ${list[i].detail}",
+                            R.mipmap.ic_launcher_round
+                        )
+                        Log.i("API", "\n" +
+                                " news_id: ${list[i].news_id} \n" +
+                                " name: ${list[i].name} \n" +
+                                " detail: ${list[i].detail} \n" +
+                                " date: ${list[i].date} \n" +
+                                " notification_id: ${list[i].notification_id} \n")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<newsData>>, t: Throwable) {
+                Log.e("API", t.message + " -*-*-*-*-*-*-*-*-*-*-*-* x News at news ")
+            }
+
+        })
+    }
+
 
      fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

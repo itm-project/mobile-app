@@ -1,44 +1,46 @@
 package com.example.drawer
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.*
-import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_profile.*
-import me.relex.circleindicator.CircleIndicator3
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.lang.NullPointerException
+//import java.util.logging.Handler
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
     lateinit var homeFrag : HomeFragment
     lateinit var proFrag : ProfileFragment
     lateinit var hisFrag : HistoryFragment
     lateinit var setFrag : SettingFragment
-    lateinit var logoutFrag : LogoutFragment
+    //lateinit var logoutFrag : LogoutFragment
+
+    lateinit var NewsFrag : NewsImportantFragment
 
     lateinit private var api: API
+    lateinit var session:sessionUser
+    val manager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        session = sessionUser(applicationContext)
+        var user:HashMap<String, String> = session.getUserDetail()
+        Log.e("TESTSESSION", "SESSION" + user)
 
         val toolbar : Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -50,7 +52,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             this,
             drawerLayout,
             toolbar,
-            (R.string.close),(R.string.open)
+            (R.string.close), (R.string.open)
+
         ) {
 
         }
@@ -62,38 +65,65 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerToggle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
 
+
+        val handler = Handler()
+        handler.postDelayed(
+            Runnable {  },
+            5000
+        )
+
+
         homeFrag = HomeFragment()
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.frame_layout,homeFrag)
+            .replace(R.id.frame_layout, homeFrag)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
 
+      /*NewsFrag = NewsImportantFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.frame_layout,NewsFrag)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .commit()*/
 
         api = API.retrofitBuild()
         //getNews()
 
+        /*val fragPro = ProfileFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.textviewPro,fragPro).commit()*/
 
     }
 
+
+
+
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
+
         when (menuItem.itemId)
         {
             R.id.home -> {
                 homeFrag = HomeFragment()
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.frame_layout,homeFrag)
+                    .replace(R.id.frame_layout, homeFrag)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
+
+                /*NewsFrag = NewsImportantFragment()
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.frame_layout,NewsFrag)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit()*/
             }
 
             R.id.profile -> {
                 proFrag = ProfileFragment()
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.frame_layout,proFrag)
+                    .replace(R.id.frame_layout, proFrag)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
@@ -102,7 +132,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 hisFrag = HistoryFragment()
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.frame_layout,hisFrag)
+                    .replace(R.id.frame_layout, hisFrag)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
@@ -111,23 +141,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setFrag = SettingFragment()
                 supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.frame_layout,setFrag)
+                    .replace(R.id.frame_layout, setFrag)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
 
             R.id.logout -> {
 
-                Toast.makeText(this,"Log out",Toast.LENGTH_SHORT).show()
-                val intent = Intent(this,login::class.java)
+                Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, login::class.java)
                 startActivity(intent)
 
-                logoutFrag = LogoutFragment()
+                /*logoutFrag = LogoutFragment()
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_layout,logoutFrag)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit()
+                    .commit()*/
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
@@ -148,7 +178,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.noti_menu,menu)
+        inflater.inflate(R.menu.noti_menu, menu)
         return true
     }
 
@@ -157,8 +187,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         {
             R.id.noti -> {
                 //Toast.makeText(this,"NOTI",Toast.LENGTH_SHORT).show()
-                val intent = Intent(this,notifications::class.java)
-                startActivity (intent)
+                val intent = Intent(this, notifications::class.java)
+                startActivity(intent)
                 return true
             }
             else -> {
@@ -169,8 +199,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
+    /*override fun passDataCom(tv: String) {
+        val bundle = Bundle()
+        bundle.putString("message",tv)
 
-    private fun getNews(){
+        val transaction = this.supportFragmentManager.beginTransaction()
+        val fragPro = ProfileFragment()
+        fragPro.arguments = bundle
+        transaction.replace(R.id.textviewPro, fragPro)
+        transaction.commit()
+    }*/
+
+
+    /*private fun getNews(){
         val call = api.getNews()
         call.enqueue(object: Callback<List<newsData>> {
             override fun onResponse(
@@ -180,7 +221,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 if(response.isSuccessful)
                 {
                     val list = response.body()
-                    Log.i("API","--------------- isSuccessful x News ----------------")
+                    Log.i("API","--------------- isSuccessful x CHECK ERROR ----------------")
 
                     for(i in 0 until list!!.size)
                     {
@@ -191,10 +232,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onFailure(call: Call<List<newsData>>, t: Throwable) {
-                Log.e("API",t.message+" -*-*-*-*-*-*-*-*-*-*-*-* x News")
+                Log.e("API",t.message+" -*-*-*-*-*-*-*-*-*-*-*-* x CHECK ERROR")
             }
 
         })
-    }
+    }*/
 
 }
