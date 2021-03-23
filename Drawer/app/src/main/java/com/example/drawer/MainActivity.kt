@@ -16,22 +16,28 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_news_important.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.coroutines.delay
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 //import java.util.logging.Handler
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var homeFrag : HomeFragment
-    lateinit var proFrag : ProfileFragment
-    lateinit var hisFrag : HistoryFragment
-    lateinit var setFrag : SettingFragment
+    lateinit var homeFrag: HomeFragment
+    lateinit var proFrag: ProfileFragment
+    lateinit var hisFrag: HistoryFragment
+    lateinit var setFrag: SettingFragment
     //lateinit var logoutFrag : LogoutFragment
 
-    lateinit var NewsFrag : NewsImportantFragment
+    lateinit var NewsFrag: NewsImportantFragment
 
     lateinit private var api: API
-    lateinit var session:sessionUser
+    lateinit var session: sessionUser
     val manager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,16 +45,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
 
         session = sessionUser(applicationContext)
-        var user:HashMap<String, String> = session.getUserDetail()
+        var user: HashMap<String, String> = session.getUserDetail()
         Log.e("TESTSESSION", "SESSION" + user)
 
-        val toolbar : Toolbar = findViewById(R.id.toolbar)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
+
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
+        Log.d("FU", "DRA = " + drawerLayout.toString())
         val actionBar = supportActionBar
         actionBar!!.title = "CASDCO19"
 
-        val drawerToggle : ActionBarDrawerToggle = object : ActionBarDrawerToggle(
+        val drawerToggle: ActionBarDrawerToggle = object : ActionBarDrawerToggle(
             this,
             drawerLayout,
             toolbar,
@@ -58,7 +66,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         }
 
-        val nav_view : NavigationView = findViewById(R.id.nav_view)
+        val nav_view: NavigationView = findViewById(R.id.nav_view)
+
+        val handler = Handler()
+        handler.postDelayed(
+            Runnable {
+            },
+            5000
+        )
+
 
         drawerToggle.isDrawerIndicatorEnabled = true
         drawerLayout.addDrawerListener(drawerToggle)
@@ -66,26 +82,54 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
 
 
-        val handler = Handler()
-        handler.postDelayed(
-            Runnable {  },
-            5000
-        )
+        api = API.retrofitBuild()
+
+        val call = api.getImNews()
+        call.enqueue(object : Callback<List<notiImData>> {
+            override fun onResponse(
+                call: Call<List<notiImData>>,
+                response: Response<List<notiImData>>
+            ) {
+                if (response.isSuccessful) {
+                    val list = response.body()
+                    if (list.isNullOrEmpty()) {
+                        homeFrag = HomeFragment()
+                        supportFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.frame_layout, homeFrag)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .commit()
+                    } else {
+                        NewsFrag = NewsImportantFragment()
+                        supportFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.frame_layout, NewsFrag)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .commit()
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: Call<List<notiImData>>, t: Throwable) {
+
+                homeFrag = HomeFragment()
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.frame_layout, homeFrag)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit()
+
+                Log.e("TESTCHANGEHOMEEEE", t.message + " -*-*-*-*-*-*-*-*-*-*-*-* x News at MAIN ")
+            }
+
+        })
 
 
-        homeFrag = HomeFragment()
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.frame_layout, homeFrag)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .commit()
 
-      /*NewsFrag = NewsImportantFragment()
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.frame_layout,NewsFrag)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .commit()*/
+
+
+
 
         api = API.retrofitBuild()
         //getNews()
@@ -93,23 +137,66 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         /*val fragPro = ProfileFragment()
         supportFragmentManager.beginTransaction().replace(R.id.textviewPro,fragPro).commit()*/
 
+
     }
 
 
-
-
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
 
-        when (menuItem.itemId)
-        {
+        when (menuItem.itemId) {
             R.id.home -> {
-                homeFrag = HomeFragment()
+
+                val call = api.getImNews()
+                call.enqueue(object : Callback<List<notiImData>> {
+                    override fun onResponse(
+                        call: Call<List<notiImData>>,
+                        response: Response<List<notiImData>>
+                    ) {
+                        if (response.isSuccessful) {
+                            val list = response.body()
+                            if (list.isNullOrEmpty()) {
+                                homeFrag = HomeFragment()
+                                supportFragmentManager
+                                    .beginTransaction()
+                                    .replace(R.id.frame_layout, homeFrag)
+                                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                    .commit()
+                            } else {
+                                NewsFrag = NewsImportantFragment()
+                                supportFragmentManager
+                                    .beginTransaction()
+                                    .replace(R.id.frame_layout, NewsFrag)
+                                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                    .commit()
+                            }
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<List<notiImData>>, t: Throwable) {
+
+                        homeFrag = HomeFragment()
+                        supportFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.frame_layout, homeFrag)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .commit()
+
+                        Log.e(
+                            "TESTCHANGEHOMEEEE",
+                            t.message + " -*-*-*-*-*-*-*-*-*-*-*-* x News at MAIN "
+                        )
+                    }
+
+                })
+
+                /*homeFrag = HomeFragment()
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_layout, homeFrag)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit()
+                    .commit()*/
 
                 /*NewsFrag = NewsImportantFragment()
                 supportFragmentManager
@@ -120,6 +207,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.profile -> {
+
+                /*Toast.makeText(this, "TESTNEWS", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, news::class.java)
+                startActivity(intent)*/
+
                 proFrag = ProfileFragment()
                 supportFragmentManager
                     .beginTransaction()
@@ -129,6 +221,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.history -> {
+                /*Toast.makeText(this, "TEST MOVE", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, Location::class.java)
+                startActivity(intent)*/
                 hisFrag = HistoryFragment()
                 supportFragmentManager
                     .beginTransaction()
@@ -137,14 +232,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .commit()
             }
 
-            R.id.setting -> {
+            /*R.id.setting -> {
                 setFrag = SettingFragment()
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_layout, setFrag)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
-            }
+            }*/
 
             R.id.logout -> {
 
@@ -165,13 +260,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
-        val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
-        if(drawerLayout.isDrawerOpen(GravityCompat.START))
-        {
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
-        }
-        else
-        {
+        } else {
             super.onBackPressed()
         }
     }
@@ -183,8 +275,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId)
-        {
+        when (item.itemId) {
             R.id.noti -> {
                 //Toast.makeText(this,"NOTI",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, notifications::class.java)

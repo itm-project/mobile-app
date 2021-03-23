@@ -14,7 +14,7 @@ class register : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val list1: MutableList<String> = ArrayList()
+        /*val list1: MutableList<String> = ArrayList()
         list1.add("Tambon1")
         list1.add("Tambon2")
         list1.add("Tambon3")
@@ -36,7 +36,7 @@ class register : AppCompatActivity() {
         list3.add("Changwat3")
         val adapter3: ArrayAdapter<String> =
             ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, list3)
-        spinner3.adapter = adapter3
+        spinner3.adapter = adapter3*/
 
 
         /*val op1 : Spinner = findViewById(R.id.spinner1)
@@ -115,9 +115,9 @@ class register : AppCompatActivity() {
         val ad2: EditText = findViewById(R.id.ad2)
         val ad3: EditText = findViewById(R.id.ad3)
         val ad4: EditText = findViewById(R.id.ad4)
-        val spn1: Spinner = findViewById(R.id.spinner1)
+        /*val spn1: Spinner = findViewById(R.id.spinner1)
         val spn2: Spinner = findViewById(R.id.spinner2)
-        val spn3: Spinner = findViewById(R.id.spinner3)
+        val spn3: Spinner = findViewById(R.id.spinner3)*/
 
 
         btnRegis.setOnClickListener {

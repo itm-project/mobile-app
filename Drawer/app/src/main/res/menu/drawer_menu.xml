@@ -31,11 +31,11 @@
 
         <menu>
 
-            <item
+            <!-- <item
                 android:id="@+id/setting"
                 android:title="Setting"
                 android:icon="@drawable/ic_settings"
-                ></item>
+                ></item> -->
 
             <item
                 android:id="@+id/logout"

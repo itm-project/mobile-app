@@ -25,13 +25,24 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="30dp"
         android:gravity="left"
-        android:text="Username : Alnwza07"
+
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv1"
+        app:layout_constraintBottom_toTopOf="@+id/et0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/picpro"></TextView>
+
+    <EditText
+        android:id="@+id/et0"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="Edit Username"
+        app:layout_constraintBottom_toTopOf="@+id/tv1"
+        app:layout_constraintEnd_toStartOf="@+id/btnStUsername"
+        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv0" />
 
     <TextView
         android:id="@+id/tv1"
@@ -41,13 +52,13 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="35dp"
         android:gravity="left"
-        android:text="Name : Mr.AAA  AAAAA"
+
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/tv2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv0"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/et0"></TextView>
 
     <TextView
         android:id="@+id/tv2"
@@ -56,15 +67,15 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="35dp"
         android:gravity="left"
-        android:text="Phone : 0XX-XXX-XXXX"
+
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv3"
+        app:layout_constraintBottom_toTopOf="@+id/tv4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv1"></TextView>
 
-    <TextView
+    <!-- <TextView
         android:id="@+id/tv3"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
@@ -77,24 +88,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv2"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/tv2"></TextView> -->
 
     <TextView
         android:id="@+id/tv4"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv3"
+
         android:layout_marginStart="50dp"
         android:layout_marginTop="35dp"
         android:gravity="left"
-        android:text="Address : xxxxxxxxxxxxx\n                  xxxxxxxxxxxxx"
+
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="150dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv3"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/tv2"></TextView>
 
     <Button
         android:id="@+id/btnStUsername"
@@ -105,8 +116,8 @@
         android:text="Edit"
         app:layout_constraintBottom_toTopOf="@+id/btnStName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toEndOf="@+id/tv0"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/et0"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -129,13 +140,13 @@
 
         android:layout_marginBottom="15dp"
         android:text="Edit"
-        app:layout_constraintBottom_toTopOf="@+id/btnStMail"
+        app:layout_constraintBottom_toTopOf="@+id/btnStAd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/tv2"
         app:layout_constraintTop_toBottomOf="@+id/btnStName" />
 
-    <Button
+    <!-- <Button
         android:id="@+id/btnStMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -146,19 +157,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/tv3"
-        app:layout_constraintTop_toBottomOf="@+id/btnStTel" />
+        app:layout_constraintTop_toBottomOf="@+id/btnStTel" /> -->
 
     <Button
         android:id="@+id/btnStAd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="80dp"
         android:text="Edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/tv4"
-        app:layout_constraintTop_toBottomOf="@+id/btnStMail" />
+        app:layout_constraintTop_toBottomOf="@+id/btnStTel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

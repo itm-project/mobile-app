@@ -47,7 +47,7 @@ class notifications : AppCompatActivity() {
 
                     for(i in 0 until list!!.size)
                     {
-                        val msg = "\n news_id: ${list[i].news_id} \n name: ${list[i].name} \n detail: ${list[i].detail} \n date: ${list[i].date} \n "
+                        val msg = " \n name: ${list[i].name} \n detail: ${list[i].detail} \n date: ${list[i].date} \n "
                         textViewNoti.append(msg)
                     }
                 }

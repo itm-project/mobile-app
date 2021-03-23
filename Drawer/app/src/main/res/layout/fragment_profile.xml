@@ -10,7 +10,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@mipmap/ic_launcher_round"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/picpro"/>
 
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
-        android:gravity="center"
+        android:gravity="start"
         android:layout_below="@+id/picpro"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"

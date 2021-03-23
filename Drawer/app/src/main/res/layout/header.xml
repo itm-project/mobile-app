@@ -10,22 +10,24 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:src="@mipmap/ic_launcher_round"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         ></ImageView>
 
     <TextView
         android:id="@+id/usernameHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Alnwza07"
+        android:text="admin"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
+        android:textSize="20dp"
         ></TextView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mr. AAA AAAAA"
+        android:text="ชื่อ นามสกุล"
+        android:textSize="15dp"
         ></TextView>
 
 </LinearLayout>

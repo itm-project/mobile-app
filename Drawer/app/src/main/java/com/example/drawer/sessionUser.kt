@@ -22,15 +22,23 @@ class sessionUser {
         val KEY_ID:String = "user_id"
         val KEY_NAME:String = "name"
         val KEY_LASTNAME:String = "lastname"
+        val LAT:String = "latitude"
+        val LONGI:String = "longitude"
     }
 
     fun createLoginSession(user_id:String, name:String , lastname:String)
     {
         editor.putBoolean(IS_LOGIN,true)
         editor.putString(KEY_ID , user_id)
-        //editor.putInt(KEY_ID , user_id)
         editor.putString(KEY_NAME , name)
         editor.putString(KEY_LASTNAME , lastname)
+        editor.commit()
+    }
+
+    fun createLocationSession(latitude:String, longitude:String)
+    {
+        editor.putString(LAT , latitude)
+        editor.putString(LONGI , longitude)
         editor.commit()
     }
 
@@ -50,6 +58,13 @@ class sessionUser {
         (user as HashMap).put(KEY_NAME, pref.getString(KEY_NAME,null).toString())
         (user as HashMap).put(KEY_LASTNAME, pref.getString(KEY_LASTNAME,null).toString())
         return user
+    }
+
+    fun getLocationDetail():HashMap<String,String>{
+        var shareloma: Map<String,String> = HashMap<String,String>()
+        (shareloma as HashMap).put(LAT, pref.getString(LAT,null).toString())
+        (shareloma as HashMap).put(LONGI, pref.getString(LONGI,null).toString())
+        return shareloma
     }
 
     fun LogoutUser()

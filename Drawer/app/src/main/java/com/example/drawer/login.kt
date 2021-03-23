@@ -3,6 +3,7 @@ package com.example.drawer
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -62,12 +63,12 @@ class login : AppCompatActivity() {
                             for (i in 0 until list!!.size) {
                                 user.add(list[i])
                                 session.createLoginSession(list[i].user_id.toString(),list[i].name,list[i].lastname)
-                                //session.createLoginSession(list[i].user_id,list[i].name,list[i].lastname)
                             }
 
                             moveToMain(user)
                             Log.e("API", "--------------- isSuccessful ----------------")
                         }
+                        //Log.e("API", "--------------- is -- NOT-NOT-NOT -- Successful ----------------")
                     }
 
                     override fun onFailure(call: Call<List<userData>>, t: Throwable) {
@@ -80,6 +81,7 @@ class login : AppCompatActivity() {
             else
             {
                 Toast.makeText(this,"Input Required", Toast.LENGTH_SHORT).show()
+                Log.e("API", "--------------- NEED INPUT ----------------")
             }
         }
 
@@ -95,10 +97,10 @@ class login : AppCompatActivity() {
     private fun moveToMain(user:ArrayList<userData>) {
         if(user.size > 0)
         {
-            Toast.makeText(this,"YAY", Toast.LENGTH_SHORT).show()
-            //Toast.makeText(this,"Input Provided", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity (intent)
+                    Toast.makeText(this,"Input Provided", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity (intent)
+            //Toast.makeText(this,"YAY", Toast.LENGTH_SHORT).show()
         }
         else
         {

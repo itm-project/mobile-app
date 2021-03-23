@@ -47,7 +47,7 @@ class ProfileFragment : Fragment() {
         }
         //session = sessionUser(requireActivity())
         getProfile()
-        getAddress()
+        //getAddress2()
 
     }
 
@@ -57,46 +57,48 @@ class ProfileFragment : Fragment() {
         Log.e("TESTSESSIONINPROFRAG","PROFRAG: "+user)
         var idid :Int
         for ((k, v) in user) {
-            if(k == "user_id")
-            {
+            if(k == "user_id") {
                 idid = v.toInt()
-                Log.e("NAME IN-ININININ!!!!!!","$k = $v")
-                Log.e("ID-ID-ID-ID-ID-ID-ID","ID:"+idid)
+                Log.e("NAME IN-ININININ!!!!!!", "$k = $v")
+                Log.e("ID-ID-ID-ID-ID-ID-ID", "ID:" + idid)
                 api = API.retrofitBuild()
                 val call = api.getProfile(profileRequestData(idid))
-                call.enqueue(object : Callback<List<userData>>{
-                    override fun onResponse(call: Call<List<userData>>, response: Response<List<userData>>) {
-                        if(response.isSuccessful)
-                        {
+                call.enqueue(object : Callback<List<userData>> {
+                    override fun onResponse(
+                        call: Call<List<userData>>,
+                        response: Response<List<userData>>
+                    ) {
+                        if (response.isSuccessful) {
                             val list = response.body()
-                            for(i in 0 until list!!.size)
-                            {
-                                val msg = "\n username: ${list[i].username} \n name: ${list[i].name} \n lastname: ${list[i].lastname} \n phone: ${list[i].phone} "
+                            for (i in 0 until list!!.size) {
+                                val msg =
+                                    "\n Username: ${list[i].username} \n Name: ${list[i].name} \n Lastname: ${list[i].lastname} \n phone: ${list[i].phone} "
                                 textviewPro.append(msg)
-                                //getAddress(list[i].address)
+                                getAddress(list[i].address)
                             }
                             //val msg = "A: "+ (list?.get(0)?.username ?: String)
 
-                            Log.e("GGGGGGGGGGG","GOD PLEASE")
+                            Log.e("GGGGGGGGGGG", "GOD PLEASE")
                         }
                         //Log.e("NOTSUCCESSFUL","GOD PLEASE -*-")
                     }
+
                     override fun onFailure(call: Call<List<userData>>, t: Throwable) {
-                        Log.e("FFFFFFFFFF",t.message+"  -DAMN")
+                        Log.e("FFFFFFFFFF", t.message + "  -DAMN")
                     }
 
                 })
 
-                Log.e("END-END-END-END-END","ID:"+idid)
+                Log.e("END-END-END-END-END", "ID:" + idid)
             }
         }
 
     }
 
-    fun getAddress(){
-        val addressId:Int = 9
+    fun getAddress(ida:Int){
         api = API.retrofitBuild()
-        val call = api.getAddress(addressRequestData(addressId))
+        Log.e("CHKCHKCHKCHK", "IDA:" + ida)
+        val call = api.getAddress(addressRequestData(9))
         call.enqueue(object : Callback<List<addressData>>{
             override fun onResponse(
                 call: Call<List<addressData>>,
@@ -108,19 +110,22 @@ class ProfileFragment : Fragment() {
                     for(i in 0 until list!!.size)
                     {
                         val msg = "\n Number: ${list[i].number} \n Moo: ${list[i].moo} \n Road: ${list[i].road}  " +
-                                  "\n Tambon: ${list[i].TambonThai} \n District: ${list[i].DistrictThai} \n Province: ${list[i].ProvinceThai} " +
-                                  "\n Postcode: ${list[i].postcode}"
+                                "\n Tambon: ${list[i].TambonThai} \n District: ${list[i].DistrictThai} \n Province: ${list[i].ProvinceThai} " +
+                                "\n Postcode: ${list[i].postcode}"
                         textviewPro.append(msg)
                     }
                     Log.e("ADDRESS ADD!","ADDDDDDDDRESSSSSSSSSSSSSS")
                 }
             }
+
             override fun onFailure(call: Call<List<addressData>>, t: Throwable) {
-                Log.e("ADDRESS FAIL!",t.message+" ----------- ADDRESS FAIL")
+                Log.e("ADDRESSSSSSSS",t.message+ "------ isNotSuccessful ------ ADDRESS ------")
             }
+
 
         })
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

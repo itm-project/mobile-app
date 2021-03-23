@@ -84,17 +84,18 @@ class HomeFragment : Fragment() {
                     Log.i("API", "--------------- isSuccessful x News at homeFrag ----------------")
 
                     for (i in 0 until list!!.size) {
+                        Log.i("API", "--------------- isSuccessful x News at homeFrag IN LOOP FOR ----------------")
                         addToList(
                             title = "Title : ${list[i].name}",
                             description = "Description : ${list[i].detail}",
                             R.mipmap.ic_launcher_round
                         )
-                        /*Log.i("API", "\n" +
+                        Log.i("API", "\n" +
                                 " news_id: ${list[i].news_id} \n" +
                                 " name: ${list[i].name} \n" +
                                 " detail: ${list[i].detail} \n" +
                                 " date: ${list[i].date} \n" +
-                                " notification_id: ${list[i].notification_id} \n")*/
+                                " notification_id: ${list[i].notification_id} \n")
                     }
                 }
             }

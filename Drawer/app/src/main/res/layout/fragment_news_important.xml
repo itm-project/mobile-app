@@ -19,8 +19,8 @@
         android:id="@+id/imNews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="IMPORTANT"
-        android:textSize="50dp"
+        android:text="IMPORTANT NEWS"
+        android:textSize="30dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"/>
 

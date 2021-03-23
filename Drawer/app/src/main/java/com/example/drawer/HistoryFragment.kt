@@ -1,10 +1,19 @@
 package com.example.drawer
 
+import android.content.pm.PackageManager
+import android.net.DnsResolver
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import kotlinx.android.synthetic.main.fragment_history.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.HashMap
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,12 +30,47 @@ class HistoryFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit private var api: API
+    lateinit var session:sessionUser
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        getLocation()
+    }
+
+    private fun getLocation(){
+        session = sessionUser(requireActivity())
+        var shareloma: HashMap<String, String> = session.getLocationDetail()
+        //var user: HashMap<String, String> = session.getUserDetail()
+        Log.e("TESTSESSIONINLOCATION","PROFRAG: "+shareloma)
+        api = API.retrofitBuild()
+        val call = api.getLocation(historyRequestData(shareloma.getValue("latitude"),shareloma.getValue("longitude"),"admin")) //**********
+        call.enqueue(object : Callback<List<getHistoryData>>{
+            override fun onResponse(
+                call: Call<List<getHistoryData>>,
+                response: Response<List<getHistoryData>>
+            ) {
+                if(response.isSuccessful)
+                {
+                    val list = response.body()
+                    for(i in 0 until list!!.size)
+                    {
+                        val msg = "\n\n Place: ${list[i].name} \n Time: ${list[i].time} \n Latitude: ${list[i].latitude} \n Longitude: ${list[i].longtitude} \n"
+                        tvHistory.append(msg)
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: Call<List<getHistoryData>>, t: Throwable) {
+                Log.e("IN HIS",t.message+"  -HISTORY FAIL")
+            }
+
+        })
     }
 
     override fun onCreateView(

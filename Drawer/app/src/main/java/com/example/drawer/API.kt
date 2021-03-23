@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 
-val BASE_URL = "http://158.108.213.152:5001/"
+val BASE_URL = "http://158.108.213.144:5001/"
 interface API {
 
     @GET("news")
@@ -32,6 +32,11 @@ interface API {
     @Headers("Content-Type: application/json")
     @POST("address")
     fun getAddress(@Body addressRequestData: addressRequestData) : Call<List<addressData>>
+
+    @Headers("Content-Type: application/json")
+    @POST("history")
+    fun getLocation(@Body historyRequestData : historyRequestData) : Call<List<getHistoryData>>
+
 
     /*@GET("login")
     fun getUserProfile(): Call<LoginPostData>*/
