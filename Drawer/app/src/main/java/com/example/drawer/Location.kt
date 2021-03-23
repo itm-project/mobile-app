@@ -2,32 +2,20 @@ package com.example.drawer
 
 import android.Manifest
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Geocoder
-//import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
-import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.FragmentTransaction
 import com.google.android.gms.location.*
-import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_location.*
-import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.textView
 import java.util.*
-//, NavigationView.OnNavigationItemSelectedListener
+
+
 class Location : AppCompatActivity() {
 
     lateinit var session:sessionUser
@@ -43,15 +31,11 @@ class Location : AppCompatActivity() {
         session = sessionUser(applicationContext)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        //btnLocation.setOnClickListener {
+
             Log.d("Debug:", CheckPermission().toString())
             Log.d("Debug:", isLocationEnabled().toString())
             RequestPermission()
-            /* fusedLocationProviderClient.lastLocation.addOnSuccessListener{location: Location? ->
-                 textView.text = location?.latitude.toString() + "," + location?.longitude.toString()
-             }*/
             getLastLocation()
-        //}
 
     }
 
@@ -68,13 +52,6 @@ class Location : AppCompatActivity() {
                         Manifest.permission.ACCESS_COARSE_LOCATION
                     ) != PackageManager.PERMISSION_GRANTED
                 ) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
                     return
                 }
                 //------------------------------------------------------
@@ -90,8 +67,7 @@ class Location : AppCompatActivity() {
                         session.createLocationSession(location.latitude.toString(),location.longitude.toString())
                         var shareloma:HashMap<String,String> = session.getLocationDetail()
                         Log.e("TESTSESSIONINLOCATION","PROFRAG: "+shareloma)
-                        // + "\n ; City: " + getCityName(location.latitude,location.longitude)+ "\n ; Country: " + getCountryName(location.latitude,location.longitude)
-                    }
+                        }
                 }
             }else{
                 Toast.makeText(this,"Please Turn on Your device Location",Toast.LENGTH_SHORT).show()
@@ -116,13 +92,6 @@ class Location : AppCompatActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return
         }
         fusedLocationProviderClient!!.requestLocationUpdates(locationRequest,locationCallback,Looper.myLooper())
@@ -134,7 +103,7 @@ class Location : AppCompatActivity() {
             var lastLocation: Location = locationResult.lastLocation
             Log.d("Debug:","your last last location: "+ lastLocation.longitude.toString())
             tvLocation.text = "You Last Location is : Long: "+ lastLocation.longitude + " , Lat: " + lastLocation.latitude + "\n"
-            //+ getCityName(lastLocation.latitude,lastLocation.longitude)
+
         }
     }
 
@@ -161,26 +130,6 @@ class Location : AppCompatActivity() {
         var locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
     }
-
-    /*private fun getCityName(lat: Double,long: Double):String{
-        var cityName = ""
-        var geoCoder = Geocoder(this, Locale.getDefault())
-        var Adress = geoCoder.getFromLocation(lat,long,1)
-
-        cityName = Adress.get(0).locality
-        Log.d("Debug:","Your City: " + cityName )
-        return cityName
-    }
-
-    private fun getCountryName(lat: Double,long: Double):String{
-        var countryName = ""
-        var geoCoder = Geocoder(this, Locale.getDefault())
-        var Adress = geoCoder.getFromLocation(lat,long,3)
-
-        countryName = Adress.get(0).countryName
-        Log.d("Debug:","Your Country " + countryName)
-        return countryName
-    }*/
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

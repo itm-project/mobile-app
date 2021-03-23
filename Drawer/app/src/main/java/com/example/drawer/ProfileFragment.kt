@@ -1,17 +1,11 @@
 package com.example.drawer
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-//import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_notifications.*
-import kotlinx.android.synthetic.main.activity_notifications.textViewNoti
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_profile.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -36,8 +30,6 @@ class ProfileFragment : Fragment() {
     lateinit var session:sessionUser
 
 
-    //private lateinit var communicator: Communicator
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -45,10 +37,7 @@ class ProfileFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
 
         }
-        //session = sessionUser(requireActivity())
         getProfile()
-        //getAddress2()
-
     }
 
     fun getProfile() {
@@ -76,11 +65,9 @@ class ProfileFragment : Fragment() {
                                 textviewPro.append(msg)
                                 getAddress(list[i].address)
                             }
-                            //val msg = "A: "+ (list?.get(0)?.username ?: String)
 
                             Log.e("GGGGGGGGGGG", "GOD PLEASE")
                         }
-                        //Log.e("NOTSUCCESSFUL","GOD PLEASE -*-")
                     }
 
                     override fun onFailure(call: Call<List<userData>>, t: Throwable) {

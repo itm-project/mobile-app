@@ -1,13 +1,11 @@
 package com.example.drawer
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.fragment_news_important.*
 import me.relex.circleindicator.CircleIndicator3
@@ -71,12 +69,6 @@ class NewsImportantFragment : Fragment() {
                             description = "Description : ${list[i].detail}",
                             R.mipmap.ic_launcher_round
                         )
-                        /*Log.i("API", "\n" +
-                                " news_id: ${list[i].news_id} \n" +
-                                " name: ${list[i].name} \n" +
-                                " detail: ${list[i].detail} \n" +
-                                " date: ${list[i].date} \n" +
-                                " notification_id: ${list[i].notification_id} \n")*/
                     }
 
                 }
@@ -104,12 +96,6 @@ class NewsImportantFragment : Fragment() {
                         val msg = "\n name: ${list[i].name} \n detail: ${list[i].detail} \n"
                         imNews.append(msg)
 
-                        /*Log.i("API", "\n" +
-                                " news_id: ${list[i].news_id} \n" +
-                                " name: ${list[i].name} \n" +
-                                " detail: ${list[i].detail} \n" +
-                                " date: ${list[i].date} \n" +
-                                " notification_id: ${list[i].notification_id} \n")*/
                     }
 
                 }
@@ -135,14 +121,6 @@ class NewsImportantFragment : Fragment() {
 
         val indicator = v.findViewById<CircleIndicator3>(R.id.indicator01)
         indicator.setViewPager(view_pager2)
-
-
-        /*val btnWarning: Button = v.findViewById(R.id.btnWarning)
-        btnWarning.setOnClickListener {
-            startActivity(Intent(activity, news::class.java))
-        }*/
-
-        // Inflate the layout for this fragment
 
         return v
     }

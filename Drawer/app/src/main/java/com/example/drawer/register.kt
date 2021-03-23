@@ -1,181 +1,182 @@
 package com.example.drawer
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_register.*
-import java.lang.reflect.Array
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class register : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        /*val list1: MutableList<String> = ArrayList()
-        list1.add("Tambon1")
-        list1.add("Tambon2")
-        list1.add("Tambon3")
-        val adapter1: ArrayAdapter<String> =
-            ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, list1)
-        spinner1.adapter = adapter1
-
-        val list2: MutableList<String> = ArrayList()
-        list2.add("Amphoe1")
-        list2.add("Amphoe2")
-        list2.add("Amphoe3")
-        val adapter2: ArrayAdapter<String> =
-            ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, list2)
-        spinner2.adapter = adapter2
-
-        val list3: MutableList<String> = ArrayList()
-        list3.add("Changwat1")
-        list3.add("Changwat2")
-        list3.add("Changwat3")
-        val adapter3: ArrayAdapter<String> =
-            ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, list3)
-        spinner3.adapter = adapter3*/
-
-
-        /*val op1 : Spinner = findViewById(R.id.spinner1)
-        val spn1 : TextView = findViewById(R.id.spn1)
-        val optn1 : kotlin.Array<String> = arrayOf("1","11","111")
-        optn1.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,optn1)
-        op1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                spn1.text = optn1.get(position)
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                //spn1.text = "SPN1"
-            }
-        }
-
-        val op2 : Spinner = findViewById(R.id.spinner2)
-        val spn2 : TextView = findViewById(R.id.spn2)
-        val optn2 : kotlin.Array<String> = arrayOf("2","22","222")
-        optn2.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,optn2)
-        op2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                spn2.text = optn2.get(position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                //spn1.text = "SPN1"
-            }
-
-        }
-
-        val op3 : Spinner = findViewById(R.id.spinner3)
-        val spn3 : TextView = findViewById(R.id.spn3)
-        val optn3 : kotlin.Array<String> = arrayOf("3","33","333")
-        optn3.adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,optn3)
-        op3.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                spn3.text = optn3.get(position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                //spn1.text = "SPN1"
-            }
-
-        }*/
+        val btnRegis: Button = findViewById(R.id.btnRegis)
+        val cbRegis: CheckBox = findViewById(R.id.cbTerms)
+        val name: EditText = findViewById(R.id.name)
+        val lastName: EditText = findViewById(R.id.lastName)
+        val phone: EditText = findViewById(R.id.phone)
+        val mail: EditText = findViewById(R.id.enteremail)
+        val username: EditText = findViewById(R.id.enterusername)
+        val pw: EditText = findViewById(R.id.enterpassword)
+        val cfpw: EditText = findViewById(R.id.confpassword)
+        val adNum: EditText = findViewById(R.id.adnum)
+        val adMoo: EditText = findViewById(R.id.ad1)
+        val adSoi: EditText = findViewById(R.id.ad2)
+        val adRoad: EditText = findViewById(R.id.ad3)
+        val province: EditText = findViewById(R.id.enterProvince)
+        val district: EditText = findViewById(R.id.enterDistrict)
+        val tambon: EditText = findViewById(R.id.enterTambon)
+        val adZipCode: EditText = findViewById(R.id.enterZipcode)
 
         val log: TextView = findViewById(R.id.toLog)
-
         log.setOnClickListener {
             val intent = Intent(this, login::class.java)
             startActivity(intent)
         }
 
-        val btnRegis: Button = findViewById(R.id.btnRegis)
-        val cbRegis: CheckBox = findViewById(R.id.cbTerms)
-        val mail: EditText = findViewById(R.id.enteremail)
-        val user: EditText = findViewById(R.id.enterusername)
-        val pw: EditText = findViewById(R.id.enterpassword)
-        val cfpw: EditText = findViewById(R.id.confpassword)
-        val ad: EditText = findViewById(R.id.adnum)
-        val ad1: EditText = findViewById(R.id.ad1)
-        val ad2: EditText = findViewById(R.id.ad2)
-        val ad3: EditText = findViewById(R.id.ad3)
-        val ad4: EditText = findViewById(R.id.ad4)
-        /*val spn1: Spinner = findViewById(R.id.spinner1)
-        val spn2: Spinner = findViewById(R.id.spinner2)
-        val spn3: Spinner = findViewById(R.id.spinner3)*/
-
-
         btnRegis.setOnClickListener {
-            //cbRegis.setOnCheckedChangeListener { buttonView, isChecked ->
-
-            if (mail.text.trim().isEmpty() || user.text.trim().isEmpty() || pw.text.trim()
-                    .isEmpty() || cfpw.text.trim().isEmpty() || ad.text.trim().isEmpty()
-                || ad1.text.trim().isEmpty() || ad2.text.trim().isEmpty() || ad3.text.trim()
-                    .isEmpty() || ad4.text.trim().isEmpty()
-            ) {
-                Toast.makeText(this, "Input Required", Toast.LENGTH_SHORT).show()
+            if( name.text.trim().isEmpty() ||lastName.text.trim().isEmpty() || phone.text.trim().isEmpty()
+                ||mail.text.trim().isEmpty() || username.text.trim().isEmpty() || pw.text.trim().isEmpty()
+                || cfpw.text.trim().isEmpty() || adNum.text.trim().isEmpty() || adZipCode.text.trim().isEmpty()
+                || province.text.trim().isEmpty() || district.text.trim().isEmpty() || tambon.text.trim().isEmpty()){
+                if (name.text.toString().equals("")) {
+                    name.setError("Please Enter First Name")
+                }
+                if (lastName.text.toString().equals("")) {
+                    lastName.setError("Please Enter Last Name")
+                }
+                if (phone.text.toString().equals("")) {
+                    phone.setError("Please Enter Your Phone Number")
+                }
+                if (username.text.toString().equals("")) {
+                    username.setError("Please Enter UserName")
+                }
+                if (mail.text.toString().equals("")) {
+                    mail.setError("Please Enter Email")
+                }
+                if (pw.text.toString().equals("")) {
+                    pw.setError("Please Enter Password")
+                }
+                if (cfpw.text.toString().equals("")) {
+                    cfpw.setError("Please Enter Confirm Password")
+                }
+                // Checking if confirm password is same
+                if (!pw.text.toString().equals(cfpw.text.toString())) {
+                    cfpw.setError("Password does not match")
+                }
+                if (adNum.text.toString().equals("")) {
+                    adNum.setError("Please Enter Number")
+                }
+                if (province.text.toString().equals("")) {
+                    province.setError("Please Enter Province")
+                }
+                if (district.text.toString().equals("")) {
+                    district.setError("Please Enter District")
+                }
+                if (tambon.text.toString().equals("")) {
+                    tambon.setError("Please Enter Tambon")
+                }
+                if (adZipCode.text.toString().equals("")) {
+                    adZipCode.setError("Please EnterZipcode")
+                }
             }
-            if (mail.text.trim().isNotEmpty() && user.text.trim().isNotEmpty() && pw.text.trim()
-                    .isNotEmpty() && cfpw.text.trim().isNotEmpty() && ad.text.trim()
-                    .isNotEmpty() && ad1.text.trim().isNotEmpty() && ad2.text.trim()
-                    .isNotEmpty() && ad3.text.trim().isNotEmpty() && ad4.text.trim()
-                    .isNotEmpty()
-            ) {
-                Toast.makeText(this, "Need to Accept Terms", Toast.LENGTH_SHORT)
-                    .show()
-                cbRegis.setOnCheckedChangeListener { buttonView, isChecked ->
-                    btnRegis.setOnClickListener {
-                        if (!isChecked && mail.text.trim().isNotEmpty() && user.text.trim()
-                                .isNotEmpty() && pw.text.trim()
-                                .isNotEmpty() && cfpw.text.trim().isNotEmpty() && ad.text.trim()
-                                .isNotEmpty()
+            if(name.text.trim().isNotEmpty() &&lastName.text.trim().isNotEmpty() && phone.text.trim().isNotEmpty()
+                && mail.text.trim().isNotEmpty() && username.text.trim().isNotEmpty() && pw.text.trim().isNotEmpty()
+                && cfpw.text.trim().isNotEmpty() && adNum.text.trim().isNotEmpty() && adZipCode.text.trim().isNotEmpty()
+                && province.text.trim().isNotEmpty() && district.text.trim().isNotEmpty() && tambon.text.trim().isNotEmpty()
+                && !cbRegis.isChecked )
+            {
+                Toast.makeText(this@register, "Need accept term", Toast.LENGTH_SHORT).show()
+
+            }
+            try {
+
+                if (name.text.trim().isNotEmpty() && lastName.text.trim()
+                        .isNotEmpty() && phone.text.trim().isNotEmpty()
+                    && mail.text.trim().isNotEmpty() && username.text.trim()
+                        .isNotEmpty() && pw.text.trim().isNotEmpty()
+                    && cfpw.text.trim().isNotEmpty() && adNum.text.trim()
+                        .isNotEmpty() && adZipCode.text.trim().isNotEmpty()
+                    && province.text.trim().isNotEmpty() && district.text.trim()
+                        .isNotEmpty() && tambon.text.trim().isNotEmpty()
+                    && adMoo.text.trim().isNotEmpty() && adSoi.text.trim()
+                        .isNotEmpty() && adRoad.text.trim().isNotEmpty()
+                    && cbRegis.isChecked
+                ) {
+
+                    val apiRegister = API.retrofitBuild()
+                    val call = apiRegister.postRegister(
+                        postRegister(
+                            username.text.toString(),
+                            pw.text.toString(),
+                            province.text.toString(),
+                            district.text.toString(),
+                            tambon.text.toString(),
+                            name.text.toString(),
+                            lastName.text.toString(),
+                            phone.text.toString(),
+                            adNum.text.toString(),
+                            adZipCode.text.toString(),
+                            adMoo.text.toString(),
+                            adSoi.text.toString(),
+                            adRoad.text.toString()
+                        )
+                    )
+                    call.enqueue(object : Callback<List<callBackRegis>>{
+                        override fun onResponse(
+                            call: Call<List<callBackRegis>>,
+                            response: Response<List<callBackRegis>>
                         ) {
-
-                            Toast.makeText(this, "Need to Accept Terms", Toast.LENGTH_SHORT)
-                                .show()
-
-                        } else if (isChecked) {
-                            if (mail.text.trim().isNotEmpty() && user.text.trim()
-                                    .isNotEmpty() && pw.text.trim()
-                                    .isNotEmpty() && cfpw.text.trim().isNotEmpty() && ad.text.trim()
-                                    .isNotEmpty() && ad1.text.trim().isNotEmpty() && ad2.text.trim()
-                                    .isNotEmpty() && ad3.text.trim().isNotEmpty() && ad4.text.trim()
-                                    .isNotEmpty()
-                            ) {
-                                Toast.makeText(this, "Regis!", Toast.LENGTH_SHORT).show()
-                                val intent = Intent(this, MainActivity::class.java)
-                                startActivity(intent)
-                            } else
-                                Toast.makeText(this, "Input Required", Toast.LENGTH_SHORT).show()
-
+                            if(response.isSuccessful)
+                            {
+                                if (response.isSuccessful) {
+                                    val list: List<callBackRegis>? = response.body()
+                                    var str: String = ""
+                                    for (i: Int in 0 until list!!.size) {
+                                        str = "${list[i].message}"
+                                    }
+                                    if(str.equals("success")) {
+                                        Toast.makeText(this@register, "Success", Toast.LENGTH_SHORT).show()
+                                        val intent = Intent(this@register, login::class.java)
+                                        startActivity(intent)
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(this@register, "${str}", Toast.LENGTH_SHORT).show()
+                                    }
+                                } else {
+                                    Toast.makeText(
+                                        this@register,
+                                        "Response  connection fail !! ",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
 
                         }
-                    }
+
+                        override fun onFailure(call: Call<List<callBackRegis>>, t: Throwable) {
+                            Log.e("inFailure","------------------------------------------")
+                        }
+
+                    })
                 }
-
-
             }
-
+            catch(e:Exception){
+                Log.e("error",e.toString())
+            }
 
         }
 
-
     }
-
-
 }
+
+
+

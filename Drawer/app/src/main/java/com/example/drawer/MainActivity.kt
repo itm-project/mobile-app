@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,26 +14,15 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_news.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_news_important.*
-import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
-//import java.util.logging.Handler
-
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var homeFrag: HomeFragment
     lateinit var proFrag: ProfileFragment
     lateinit var hisFrag: HistoryFragment
-    lateinit var setFrag: SettingFragment
-    //lateinit var logoutFrag : LogoutFragment
 
     lateinit var NewsFrag: NewsImportantFragment
 
@@ -125,18 +115,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         })
 
-
-
-
-
-
-
         api = API.retrofitBuild()
-        //getNews()
-
-        /*val fragPro = ProfileFragment()
-        supportFragmentManager.beginTransaction().replace(R.id.textviewPro,fragPro).commit()*/
-
 
     }
 
@@ -191,26 +170,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 })
 
-                /*homeFrag = HomeFragment()
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.frame_layout, homeFrag)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit()*/
-
-                /*NewsFrag = NewsImportantFragment()
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.frame_layout,NewsFrag)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit()*/
             }
 
             R.id.profile -> {
-
-                /*Toast.makeText(this, "TESTNEWS", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, news::class.java)
-                startActivity(intent)*/
 
                 proFrag = ProfileFragment()
                 supportFragmentManager
@@ -221,9 +183,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.history -> {
-                /*Toast.makeText(this, "TEST MOVE", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, Location::class.java)
-                startActivity(intent)*/
                 hisFrag = HistoryFragment()
                 supportFragmentManager
                     .beginTransaction()

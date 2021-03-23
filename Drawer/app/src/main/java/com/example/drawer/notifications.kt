@@ -2,12 +2,9 @@ package com.example.drawer
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_notifications.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.textView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,9 +21,6 @@ class notifications : AppCompatActivity() {
         actionBar!!.title = "Notification"
 
         actionBar.setDisplayHomeAsUpEnabled(true)
-
-        /*val picnoti : ImageView = findViewById(R.id.picnoti)
-        picnoti.setImageResource(R.drawable.covidnoti)*/
 
         api = API.retrofitBuild()
         getNotiNews()

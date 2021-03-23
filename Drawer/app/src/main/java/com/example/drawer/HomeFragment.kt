@@ -48,10 +48,8 @@ class HomeFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
-        //postToList()
         api = API.retrofitBuild()
         postNews()
-
 
     }
 
@@ -61,17 +59,6 @@ class HomeFragment : Fragment() {
         imagesList.add(image)
     }
 
-    /*private fun postToList() {
-        for (i in 1..5) {
-            addToList(
-                title = "Title $i",
-                description = "Description $i",
-                R.mipmap.ic_launcher_round
-            )
-        }
-    }*/
-
-//: Call<List<newsData>>
     private fun postNews() {
         val call = api.getNews()
         call.enqueue(object : Callback<List<newsData>> {
@@ -96,6 +83,12 @@ class HomeFragment : Fragment() {
                                 " detail: ${list[i].detail} \n" +
                                 " date: ${list[i].date} \n" +
                                 " notification_id: ${list[i].notification_id} \n")
+                        val msg = "\n" +
+                                " name: ${list[i].name} \n" +
+                                " detail: ${list[i].detail} \n" +
+                                " date: ${list[i].date} \n" +
+                                " notification_id: ${list[i].notification_id} \n"
+                        textView.append(msg)
                     }
                 }
             }
@@ -122,14 +115,6 @@ class HomeFragment : Fragment() {
 
         val indicatorr = v.findViewById<CircleIndicator3>(R.id.indicator)
         indicatorr.setViewPager(view_pager2)
-
-
-        /*val btnWarning : Button = v.findViewById(R.id.btnWarning)
-        btnWarning.setOnClickListener {
-            startActivity(Intent(activity,news::class.java))
-        }*/
-
-        // Inflate the layout for this fragment
 
         return v
     }

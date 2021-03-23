@@ -1,8 +1,5 @@
 package com.example.drawer
 
-import android.database.Observable
-import android.widget.EditText
-import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -37,9 +34,10 @@ interface API {
     @POST("history")
     fun getLocation(@Body historyRequestData : historyRequestData) : Call<List<getHistoryData>>
 
+    @Headers("Content-Type:application/json")
+    @POST("user/register")
+    fun postRegister(@Body postRegister: postRegister):Call<List<callBackRegis>>
 
-    /*@GET("login")
-    fun getUserProfile(): Call<LoginPostData>*/
 
     companion object{
         fun retrofitBuild():API{
